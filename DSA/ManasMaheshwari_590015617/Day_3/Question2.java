@@ -1,20 +1,57 @@
-// Question: Count the number of occurrences of the target in the array.
-// Time Complexity: O(N)
-// Space Complexity: O(1)
-
 class Question2 {
     public static void main(String args[]) {
-        int array[] = {1, 1, 2, 2, 2, 2}; 
+        int array[] = {1, 1, 2, 2, 2, 2, 3}; 
         int target = 2;
-        int result = 0;
-        int count = array.length;
-
-        for (int i = 0; i < count; i++){
-            if (array[i] == target){
-                result += 1;
+        
+        int firstOccurrence = findFirst(array, target);
+        
+        if (firstOccurrence == -1) {
+            System.out.println(0);
+        } else {
+            int lastOccurrence = findLast(array, target);
+            
+            int count = lastOccurrence - firstOccurrence + 1;
+            System.out.println(count);
+        }
+    }
+    
+    public static int findFirst(int[] array, int target) {
+        int left = 0;
+        int right = array.length - 1;
+        int result = -1;
+        
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            
+            if (array[mid] == target) {
+                result = mid;
+                right = mid - 1;
+            } else if (array[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
             }
         }
+        return result;
+    }
+    
+    public static int findLast(int[] array, int target) {
+        int left = 0;
+        int right = array.length - 1;
+        int result = -1;
         
-        System.out.println(result);
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            
+            if (array[mid] == target) {
+                result = mid;
+                left = mid + 1;
+            } else if (array[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return result;
     }
 }

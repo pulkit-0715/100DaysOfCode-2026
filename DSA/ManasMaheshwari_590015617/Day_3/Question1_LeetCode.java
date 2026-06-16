@@ -1,5 +1,3 @@
-// LeetCode Problem 66: Plus One
-
 class Solution {
     public int[] plusOne(int[] digits) {
         int count = digits.length;
