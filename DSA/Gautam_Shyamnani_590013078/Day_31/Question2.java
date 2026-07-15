@@ -8,7 +8,7 @@ public class Question2 {
         int[] ans = new int[n];
 
         for(int i = n - 1; i >= 0 ; i--){
-            while(!s.isEmpty() && s.peek() < arr[i]){
+            while(!s.isEmpty() && s.peek() <= arr[i]){
                 s.pop();
             }
         if(s.empty()){
